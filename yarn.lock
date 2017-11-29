@@ -4442,6 +4442,10 @@ q@^1.1.2:
   version "1.5.1"
   resolved "http://192.168.3.239:4873/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
+qr.js@^0.0.0:
+  version "0.0.0"
+  resolved "http://192.168.3.239:4873/qr.js/-/qr.js-0.0.0.tgz#cace86386f59a0db8050fa90d9b6b0e88a1e364f"
+
 qs@6.5.1, qs@~6.5.1:
   version "6.5.1"
   resolved "http://192.168.3.239:4873/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
