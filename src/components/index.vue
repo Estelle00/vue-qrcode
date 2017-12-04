@@ -28,7 +28,7 @@
       // 纠错级别，可取0、1、2、3，数字越大说明所需纠错级别越大
       level: {
         type: String,
-        default: 'L',
+        default: 'H',
         validator: l => ['L', 'Q', 'M', 'H'].indexOf(l) > -1
       },
       // 背景色
@@ -108,11 +108,12 @@
         const canvas = this.$refs.canvas
         const ctx = canvas.getContext('2d')
         const cells = qrCode.modules
-        const ratio = this.getPixelRatio(ctx)
+        const ratio = 2 // this.getPixelRatio(ctx)
         const ratioSize = ratio * size
         const tileSize = (ratioSize / cells.length).toPrecision(4)
         const ratioImgSize = imageSize * ratio
-        canvas.width = canvas.height = ratioSize
+        console.log(ratio)
+        ctx.scale(1 / ratio, 1 / ratio)
         // 绘制
         cells.forEach((row, rdx) => {
           row.forEach((cell, cdx) => {

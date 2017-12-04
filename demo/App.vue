@@ -1,6 +1,6 @@
 <template>
   <div>
-    <har-qrcode text="adasd123" :image="logo"></har-qrcode>
+    <har-qrcode text="adasd123" :image="logo" :size="112" :imageSize="30"></har-qrcode>
   </div>
 </template>
 <style lang="scss">

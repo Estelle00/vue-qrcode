@@ -1,12 +1,12 @@
 {
   "name": "har-qrcode",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "二维码生成",
-  "main": "src/index.js",
+  "main": "src/components/index.vue",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.config.js",
     "build": "cross-env NODE_ENV=production BUILD=publish webpack --config ./build/webpack.config.js --progress --hide-modules",
-    "publish": "npm run build && npm publish"
+    "push": "npm run build && npm publish"
   },
   "repository": {
     "type": "git",
