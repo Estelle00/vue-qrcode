@@ -1,6 +1,6 @@
 {
-  "name": "har-qrcode",
-  "version": "1.0.5",
+  "name": "@suixin/vue-qrcode",
+  "version": "1.0.0",
   "description": "二维码生成",
   "main": "src/components/index.vue",
   "scripts": {
