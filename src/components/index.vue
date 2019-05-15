@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <canvas :height="size" :width="size" ref="qrcode-vue" ></canvas>
-  </div>
+  <img :src="imgData"></img>
 </template>
 <script>
   import QRCode from 'qr.js/lib/QRCode'
@@ -75,6 +73,12 @@
         this.render()
       }
     },
+    data () {
+      return {
+        imgData: '',
+        type: 'png'
+      }
+    },
     methods: {
       async render () {
         const {value, size, level, background, foreground} = this
@@ -84,7 +88,7 @@
         qrCode.addData(value)
         qrCode.make()
 
-        const canvas = this.$refs['qrcode-vue']
+        const canvas = document.createElement('canvas')
 
         const ctx = canvas.getContext('2d')
         const cells = qrCode.modules
@@ -92,7 +96,6 @@
         const tileH = _size / cells.length
         canvas.height = canvas.width = _size
         ctx.scale(1, 1)
-        console.log(detectZoom())
         cells.forEach(function (row, rdx) {
           row.forEach(function (cell, cdx) {
             ctx.fillStyle = cell ? foreground : background
@@ -105,6 +108,9 @@
           const img = await this.imgLoad(this.logo)
           ctx.drawImage(img, _size / 2 - img.width / 2, _size / 2 - img.height / 2)
         }
+        const type = 'png'
+        this.imgData = canvas.toDataURL(this.type)
+        this.$emit('imgData', this.imgData)
       },
       imgLoad (url) {
         return new Promise((resolve, reject) => {
@@ -121,11 +127,11 @@
         return 'image/' + r
       },
       saveImage () {
-        const type = 'png'
-        const canvas = this.$refs['qrcode-vue']
-        const imgData = canvas.toDataURL(type).replace(this._fixType(type), 'image/octet-stream')
+        // const type = 'png'
+        // const canvas = this.$refs['qrcode-vue']
+        const imgData = this.imgData.replace(this._fixType(this.type), 'image/octet-stream')
 
-        const filename = '二维码_' + (new Date()).getTime() + '.' + type
+        const filename = '二维码_' + (new Date()).getTime() + '.' + this.type
         const saveLink = document.createElementNS('http://www.w3.org/1999/xhtml', 'a')
         saveLink.href = imgData
         saveLink.download = filename
